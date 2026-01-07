@@ -33,16 +33,52 @@
         --shadow: 0 18px 40px rgba(0,0,0,.10);
       }
     }
+
     *{ box-sizing:border-box; }
+
+    /* ✅ 높이 기준을 확실히 잡아줌 */
+    html, body { height: 100%; }
+
+    /* ✅ body에는 배경을 두지 않고 바탕색만 */
     body{
       margin:0;
       font-family: "SUIT", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color:var(--text);
+    }
+
+    /* ✅ 배경 담당: 스크롤 내려가면 자연스럽게 차분해지는 레이어 포함 */
+    .page{
+      min-height: 100vh;
       background:
         radial-gradient(1000px 700px at 12% 0%, rgba(124,108,255,.18), transparent 60%),
         radial-gradient(900px 600px at 88% 18%, rgba(124,108,255,.10), transparent 55%),
+        /* 핵심: 아래로 갈수록 bg로 눌러서 차분해짐 */
+        linear-gradient(180deg,
+          rgba(0,0,0,0) 0vh,
+          rgba(0,0,0,0) 45vh,
+          rgba(0,0,0,.18) 90vh,
+          rgba(0,0,0,.28) 140vh,
+          var(--bg) 220vh),
         var(--bg);
-      color:var(--text);
+      background-repeat: no-repeat;
     }
+
+    /* 라이트 모드에서 과하게 어두워지지 않도록 (선택이지만 추천) */
+    @media (prefers-color-scheme: light){
+      .page{
+        background:
+          radial-gradient(1000px 700px at 12% 0%, rgba(124,108,255,.14), transparent 60%),
+          radial-gradient(900px 600px at 88% 18%, rgba(124,108,255,.08), transparent 55%),
+          linear-gradient(180deg,
+            rgba(255,255,255,0) 0vh,
+            rgba(255,255,255,0) 45vh,
+            rgba(255,255,255,.22) 110vh,
+            var(--bg) 220vh),
+          var(--bg);
+      }
+    }
+
     .wrap{ max-width: 980px; margin:0 auto; padding: 64px 20px 40px; }
     header{ display:flex; gap:18px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
     h1{ margin:0 0 10px; font-size: 38px; letter-spacing:-0.03em; }
@@ -119,60 +155,63 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Dear my SY&SJ</h1>
-        <p class="lead">
-          기록하고 만들고, 필요하면 조용히 자동화합니다.<br/>
-          작은 도구들이 일상을 조금 더 부드럽게 만든다고 믿어요.
-        </p>
+  <div class="page">
+    <div class="wrap">
+      <header>
+        <div>
+          <h1>Dear SJ&SY</h1>
+          <p class="lead">
+            기록하고 만들고, 필요하면 조용히 자동화합니다.<br/>
+            작은 도구들이 일상을 조금 더 부드럽게 만든다고 믿어요.
+          </p>
+        </div>
+        <!-- 원래 CSS에 meta가 있어서, 원하면 다시 살려서 쓰세요 -->
+        <!-- <div class="meta">📍 Jeju · ✉️ bope28s@gmail.com</div> -->
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <h2>Project</h2>
+          <p>현재 공개로 연결된 공간은 하나뿐이지만, 천천히 늘려갈 예정입니다.</p>
+
+          <div class="project">
+            <a href="https://app-infectionsy.jake82.com" aria-label="Kids game link">
+              <div>
+                <div class="p-title">Kids Game</div>
+                <div class="p-desc">
+                  아이들이 잠깐 웃고, 부모는 안심할 수 있는—짧고 가벼운 게임.
+                </div>
+                <div class="tagrow">
+                  <div class="tag">Web</div>
+                  <div class="tag">Mini game</div>
+                  <div class="tag">Family</div>
+                </div>
+              </div>
+              <div class="arrow">→</div>
+            </a>
+          </div>
+        </section>
+
+        <aside class="card">
+          <h2>Elsewhere</h2>
+          <p>연결이 필요한 곳만 최소로 둡니다.</p>
+
+          <div class="links">
+            <a class="btn" href="https://github.com/bope28s">
+              GitHub <span>code</span>
+            </a>
+            <a class="btn" href="mailto:bope28s@gmail.com">
+              Email <span>say hi</span>
+            </a>
+          </div>
+        </aside>
       </div>
-      <div class="meta"> your@email.com</div>
-    </header>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Project</h2>
-        <p>현재 공개로 연결된 공간은 하나뿐이지만, 천천히 늘려갈 예정입니다.</p>
-
-        <div class="project">
-          <a href="https://app-infectionsy.jake82.com" aria-label="Kids game link">
-            <div>
-              <div class="p-title">Kids Game</div>
-              <div class="p-desc">
-                아이들이 잠깐 웃고, 부모는 안심할 수 있는—짧고 가벼운 게임.
-              </div>
-              <div class="tagrow">
-                <div class="tag">Web</div>
-                <div class="tag">Mini game</div>
-                <div class="tag">Family</div>
-              </div>
-            </div>
-            <div class="arrow">→</div>
-          </a>
-        </div>
-      </section>
-
-      <aside class="card">
-        <h2>Elsewhere</h2>
-        <p>연결이 필요한 곳만 최소로 둡니다.</p>
-
-        <div class="links">
-          <a class="btn" href="https://github.com/bope28s">
-            GitHub <span>code</span>
-          </a>
-          <a class="btn" href="mailto:bope28s@gmail.com">
-            Email <span>say hi</span>
-          </a>
-        </div>
-      </aside>
+      <footer>
+        <div>© <span id="y"></span> Jake</div>
+        <div>“Slow is fine.”</div>
+      </footer>
     </div>
-
-    <footer>
-      <div>© <span id="y"></span> Jake</div>
-      <div>“Slow is fine.”</div>
-    </footer>
   </div>
 
   <script>
