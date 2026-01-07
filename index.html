@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JAKE — Home</title>
+  <meta name="description" content="A quiet place for projects and notes." />
+
+  <!-- (옵션) 폰트: 유아틱하지 않은 감성 계열. 원치 않으면 이 블록 삭제 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:rgba(255,255,255,.03);
+      --text:#ececf2;
+      --muted:rgba(236,236,242,.68);
+      --line:rgba(255,255,255,.10);
+      --accent:rgba(124,108,255,.55);
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#fafafa;
+        --card:#ffffff;
+        --text:#15151a;
+        --muted:rgba(21,21,26,.60);
+        --line:rgba(0,0,0,.10);
+        --accent:rgba(124,108,255,.40);
+        --shadow: 0 18px 40px rgba(0,0,0,.10);
+      }
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: "SUIT", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 700px at 12% 0%, rgba(124,108,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 88% 18%, rgba(124,108,255,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    .wrap{ max-width: 980px; margin:0 auto; padding: 64px 20px 40px; }
+    header{ display:flex; gap:18px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+    h1{ margin:0 0 10px; font-size: 38px; letter-spacing:-0.03em; }
+    .lead{ margin:0; color:var(--muted); line-height:1.7; max-width: 52ch; }
+    .meta{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 12px; border:1px solid var(--line);
+      border-radius: 999px; color:var(--muted);
+      background: rgba(255,255,255,.02);
+      font-size: 14px;
+    }
+
+    .grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap:16px; margin-top: 22px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
+
+    .card{
+      border:1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .card h2{ margin:0 0 10px; font-size: 16px; letter-spacing:-0.01em; }
+    .card p{ margin:0; color:var(--muted); line-height:1.7; }
+
+    .project{
+      margin-top: 14px;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      transition: transform .12s ease, border-color .12s ease;
+    }
+    .project:hover{ transform: translateY(-1px); border-color: rgba(124,108,255,.35); }
+    .project a{ text-decoration:none; color:inherit; display:flex; justify-content:space-between; gap:12px; }
+    .p-title{ font-weight: 600; }
+    .p-desc{ margin-top:6px; font-size: 13px; color:var(--muted); line-height:1.6; }
+    .tagrow{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
+    .tag{
+      font-size: 12px; color:var(--muted);
+      border:1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255,255,255,.02);
+    }
+    .arrow{ color:var(--muted); font-size: 18px; margin-top: 2px; }
+
+    .links{ display:flex; flex-direction:column; gap:10px; margin-top: 12px; }
+    .btn{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color:var(--text);
+      text-decoration:none;
+      transition: transform .12s ease, border-color .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(124,108,255,.35); }
+    .btn span{ color:var(--muted); font-size: 13px; }
+
+    footer{
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    footer a{ color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; }
+    footer a:hover{ border-bottom-color: var(--muted); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>JAKE</h1>
+        <p class="lead">
+          기록하고 만들고, 필요하면 조용히 자동화합니다.<br/>
+          작은 도구들이 일상을 조금 더 부드럽게 만든다고 믿어요.
+        </p>
+      </div>
+      <div class="meta"> your@email.com</div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Project</h2>
+        <p>현재 공개로 연결된 공간은 하나뿐이지만, 천천히 늘려갈 예정입니다.</p>
+
+        <div class="project">
+          <a href="https://app-infectionsy.jake82.com" aria-label="Kids game link">
+            <div>
+              <div class="p-title">Kids Game</div>
+              <div class="p-desc">
+                아이들이 잠깐 웃고, 부모는 안심할 수 있는—짧고 가벼운 게임.
+              </div>
+              <div class="tagrow">
+                <div class="tag">Web</div>
+                <div class="tag">Mini game</div>
+                <div class="tag">Family</div>
+              </div>
+            </div>
+            <div class="arrow">→</div>
+          </a>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2>Elsewhere</h2>
+        <p>연결이 필요한 곳만 최소로 둡니다.</p>
+
+        <div class="links">
+          <a class="btn" href="https://github.com/yourid">
+            GitHub <span>code</span>
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/yourid">
+            LinkedIn <span>work</span>
+          </a>
+          <a class="btn" href="mailto:your@email.com">
+            Email <span>say hi</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>© <span id="y"></span> JAKE</div>
+      <div>“Slow is fine.”</div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
